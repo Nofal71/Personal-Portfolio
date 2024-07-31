@@ -1,8 +1,15 @@
 body {
+    background-color: #c0c4e4;
+}
+
+html {
+    scroll-snap-type: y mandatory;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    background-image: url(Images/Background.png);
 }
 
 header {
@@ -16,13 +23,15 @@ header {
 nav {
     flex: 0 0 500px;
     margin-left: auto;
+    margin-right: 5px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: lightgreen;
     padding: 10px;
+    height: 7vh;
     border-radius: 20%;
-    box-shadow: 1px 1px 8px black;
+    background-color: #a6ddcb;
+    box-shadow: .4px .4px 15px rgb(80, 73, 73);
 }
 
 nav a {
@@ -30,62 +39,117 @@ nav a {
     color: black;
     font-weight: 700;
     font-size: 1.10rem;
+    padding: .55rem;
 }
-.page{
-    width: 100%;
-    height: 100vh;
+
+nav a:hover {
+    background-color: rgb(0, 184, 240);
+    transition-duration: .4s;
+}
+
+.page {
+    height: 100dvh;
+    scroll-snap-align: start;
 }
 
 .first_page {
-    display: flex;
-    gap: 20vw;
-    align-items: center;
-    justify-content: center;
+    background-image: url(Images/Green\ Wateroclor\ Leaf\ Linktree\ Background.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
 }
 
-.Intro , .photo {
+.Intro {
     height: 40vh;
-    flex: 0 0 30%;
-    border: 2px solid black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 26%;
+    left: 10%;
 }
 
-.skills{
-   display: flex;
-   justify-content: flex-start;
-   flex-direction: column;
-   gap: 2vh 0;
+.Intro_head {
+    color: navy;
+    font-weight: 900;
+    display: flex;
+    font-size: clamp(1rem, 3vw, 2rem);
+    flex-direction: column;
+    gap: 10px;
+    font-family: "Space Mono",
+        monospace;
 }
 
-.skill_flex{
+.Intro_main {
+    margin: 20px;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: rgb(7, 49, 189);
+    font-family: cursive;
+}
+
+.Intro_foot {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.Intro_foot button {
+    font-family: cursive;
+    background: transparent;
+    border: none;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 20px;
+    padding: 1% 5%;
+    margin-left: 5rem;
+    margin-top: 2rem;
+}
+
+.Intro_foot button:hover {
+    cursor: pointer;
+    background-color: #a6ddcb;
+    transition-duration: .5s;
+}
+
+.skills {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 2vh 0;
+}
+
+.skill_flex {
     border: 2px solid black;
     flex: 1;
     height: 30vh;
 }
 
-.projects{
+.projects {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 5px;
 }
 
-.projects_head{
-    flex: 1 1 100vw;
-    height: 10vw;
-    border: 2px solid rgb(255, 0, 0);
-}
-.projects_flex{
-    border: 2px solid black;
-    flex: 0 0 calc((100% / 3) - 10px);
-    height: 30vh;
-}
-.projects_foot{
+.projects_head {
     flex: 1 1 100vw;
     height: 10vw;
     border: 2px solid rgb(255, 0, 0);
 }
 
-footer{
-    height: 45vh;
+.projects_flex {
+    border: 2px solid black;
+    flex: 0 0 calc((100% / 3) - 10px);
+    height: 30vh;
+}
+
+.projects_foot {
+    flex: 1 1 100vw;
+    height: 10vw;
+    border: 2px solid rgb(255, 0, 0);
+}
+
+footer {
     background-color: lightgreen;
+    height: 45vh;
+    scroll-snap-align: start;
+
 }
