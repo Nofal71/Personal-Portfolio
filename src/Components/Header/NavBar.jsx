@@ -1,19 +1,24 @@
-import React from 'react'
+import React from 'react';
+import { AppBar, Toolbar, Tabs, Tab, Box } from '@mui/material';
 import Logo from '../../Assets/Logo';
 
 const NavBar = () => {
-
   return (
-    <div className='flex flex-row max-h-24 h-full gap-1 w-full items-center sticky'>
-      {/* LOGO */}
-      <Logo />
-      <ul className=' bg-[#161616] flex flex-row flex-1 items-center justify-between text-white px-20 border-[#262626] border h-12 rounded-full cursor-pointer '>
-        <li className='hover:border-b-4 hover:border-b-orange-500 border-b-4 border-transparent '>ABOUT</li>
-        <li className='hover:border-b-4 hover:border-b-orange-500 border-b-4 border-transparent '>PORTFOLIO</li>
-        <li className='hover:border-b-4 hover:border-b-orange-500 border-b-4 border-transparent '>CONTACT</li>
-      </ul>
-    </div>
-  )
-}
+    <AppBar position="sticky" sx={{ backgroundColor: '#161616', zIndex: 50, display: { xs: 'hidden' } }}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', height: '100%' }}>
+        {/* LOGO */}
+        <Logo />
 
-export default NavBar
+        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+          <Tabs textColor="inherit">
+            <Tab label="ABOUT" sx={{ '&:hover': { borderBottom: '4px solid #FFA500' } }} />
+            <Tab label="PORTFOLIO" sx={{ '&:hover': { borderBottom: '4px solid #FFA500' } }} />
+            <Tab label="CONTACT" sx={{ '&:hover': { borderBottom: '4px solid #FFA500' } }} />
+          </Tabs>
+        </Box>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default NavBar;
