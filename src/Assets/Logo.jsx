@@ -2,8 +2,8 @@ import React from 'react'
 
 const Logo = () => {
     return (
-        <div className='bg-black border-none p-0'>
-            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div className='bg-[#2C2C2C] border-[#262626] border rounded-full p-1'>
+            <svg width="38" height="38" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="1" y="1" width="62" height="62" rx="31" fill="#1B1B1B" />
                 <rect x="1" y="1" width="62" height="62" rx="31" stroke="#262626" stroke-width="2" />
                 <path d="M12 23.9149C12 21.7998 13.7147 20.0851 15.8298 20.0851C17.9449 20.0851 19.6596 21.7998 19.6596 23.9149C19.6596 26.03 17.9449 27.7447 15.8298 27.7447C13.7147 27.7447 12 26.03 12 23.9149Z" fill="#F35034" />
