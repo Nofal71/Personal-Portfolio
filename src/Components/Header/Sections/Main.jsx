@@ -86,7 +86,7 @@ const Main = () => {
                 container
                 direction="column"
                 justifyContent="center"
-                alignItems={{ xs: 'flex-start', lg: 'flex-end' }}
+                alignItems={{ xs: 'flex-start', md: 'flex-end' }}
                 sx={{
                     width: { xs: '100%', lg: '50%' },
                     p: { xs: 2, md: 3, lg: 4 },
@@ -95,12 +95,12 @@ const Main = () => {
                 {/* Job Status */}
                 <Box
                     sx={{
-                        display: { xs: 'none', sm: 'flex' },
+                        display: {xs:'none' , sm:'flex'},
                         alignItems: 'center',
                         gap: 1,
                         bgcolor: 'black',
                         p: 1.5,
-                        borderRadius: '24px 0 0 24px',
+                        borderRadius: '24px',
                         my: { xs: 2, md: 3, lg: 4 },
                         color: '#C0C0C0',
                     }}
