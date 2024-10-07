@@ -1,7 +1,8 @@
 import React from 'react'
 import NavBar from './Components/Header/NavBar'
-import SkillSection from './Components/Header/Sections/SkillSection'
-import Main from './Components/Header/Sections/Main'
+import ProjectSection from './Components/Sections/ProjectSections'
+import SkillSection from './Components/Sections/SkillSection'
+import Main from './Components/Sections/Main'
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <NavBar />
       <Main />
       <SkillSection />
+      <ProjectSection />
     </div>
   )
 }

@@ -2,22 +2,13 @@ import React from 'react';
 import { Box, Typography, Button, IconButton, Avatar, Grid } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import profilePhoto from '../../../Assets/Profile-Photo.jpg';
+import ProfilePhoto from '../../Assets';
+import MainCard from '../utils/MainCard';
 
 const Main = () => {
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column-reverse', md: 'row' },
-                backgroundColor: '#161616',
-                m: 2,
-                p: 2,
-                border: '1px solid #262626',
-                color: 'white',
-                borderRadius: '8px',
-            }}
-        >
+        <MainCard>
+            
             {/* Left Section */}
             <Grid
                 container
@@ -127,7 +118,7 @@ const Main = () => {
                     }}
                 >
                     <Avatar
-                        src={profilePhoto}
+                        src={ProfilePhoto}
                         alt="Nofal Hassaan"
                         sx={{
                             width: '100%',
@@ -136,7 +127,7 @@ const Main = () => {
                     />
                 </Box>
             </Grid>
-        </Box>
+        </MainCard>
     );
 };
 

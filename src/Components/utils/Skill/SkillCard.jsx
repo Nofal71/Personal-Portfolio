@@ -16,7 +16,8 @@ const SkillCard = ({ skill }) => {
             p: 2,
             width: '100%',
             '&:hover': {
-                // transform: 'perspective(800px) scale(1.02) rotateX(30deg) rotateY(15deg)',
+                transform: 'scale(1.02)',
+                cursor:'pointer'
 
             },
         }}>
