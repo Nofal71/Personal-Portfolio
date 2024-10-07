@@ -22,7 +22,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: '#161616', zIndex: 50, borderRadius: '30px' }}>
+    <AppBar position="sticky" sx={{ backgroundColor: '#161616', zIndex: 50, borderRadius: { sm: '30px' } }}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', height: '100%' }}>
         {/* LOGO */}
         <div onClick={toggleNav} style={{ cursor: 'pointer' }}>

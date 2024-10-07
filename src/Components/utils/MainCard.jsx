@@ -8,12 +8,13 @@ const MainCard = ({ children, sx, ...props }) => {
         display: 'flex',
         flexDirection: { xs: 'column-reverse', md: 'row' },
         backgroundColor: '#161616',
-        m: 2,
+        gap: 2,
+        m: { xs: 0, sm: 2 },
         p: 2,
-        border: '1px solid #262626',
+        border: { sm: '1px solid #262626', xs: 'none' },
         color: 'white',
-        borderRadius: '8px',
-        ...sx,  
+        borderRadius: { sm: '8px', xs: '0px' },
+        ...sx,
       }}
       {...props}
     >

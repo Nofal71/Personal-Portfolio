@@ -25,16 +25,16 @@ const SkillSection = () => {
     ];
 
     return (
-        <MainCard>
+        <MainCard sx={{ flexDirection: { xs: 'column', sm: 'row' } }}>
 
             {/* Left Section  */}
 
             <Box sx={{
                 display: 'flex',
-                flexDirection: { xs: 'column-reverse', md: 'column' },
+                flexDirection: 'column',
                 backgroundColor: '#161616',
                 p: 2,
-                width: 1 / 2,
+                width: { xs: 1, sm: 1 / 2 },
                 border: '1px solid #262626',
                 color: 'white',
                 borderRadius: '8px',
@@ -60,7 +60,13 @@ const SkillSection = () => {
 
             {/* Right Section  */}
 
-            <Box display={'flex'} gap={2} flexDirection={'row'} flexWrap={'wrap'} width={1 / 2}>
+            <Box sx={{
+                width: { xs: 1, sm: 1 / 2 },
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                gap: 2
+            }} >
                 {frontendSoftSkills.map((e, i) => (
                     <Box key={i} sx={{
                         display: 'flex',
@@ -72,7 +78,7 @@ const SkillSection = () => {
                         p: 2,
                         border: '1px solid #262626',
                         borderRadius: '8px',
-                        flexGrow: i % 3 === 2 ? 1 : 0.5
+                        flexGrow: { sm: i % 3 === 2 ? 1 : 0.5, xs: 1 }
                     }}>
                         <Typography variant='h5'>{e}</Typography>
                     </Box>
