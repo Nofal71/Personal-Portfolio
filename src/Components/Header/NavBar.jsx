@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppBar, Toolbar, Tabs, Tab, Box, useMediaQuery, createTheme } from '@mui/material';
 import Logo from '../../Assets/Logo';
+import { scrollContext } from '../../ContextAPI/ScrollContext';
 
 const theme = createTheme({
   breakpoints: {
@@ -16,6 +17,12 @@ const theme = createTheme({
 const NavBar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const isXs = useMediaQuery(() => theme.breakpoints.down('tablet'));
+  const contactUs = useContext(scrollContext);
+
+  const scrollToView = () => {
+    console.log(contactUs.current); // Ensure this is not null
+    contactUs.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const toggleNav = () => {
     isXs && setOpenMenu(!openMenu);
@@ -31,14 +38,10 @@ const NavBar = () => {
 
         {/* Desktop Nav */}
         <Box sx={{ flexGrow: 1, justifyContent: 'center', display: { xs: 'none', sm: 'flex' } }}>
-          <Tabs
-            textColor="inherit"
-            sx={{ minWidth: '100%' }}
-            variant="fullWidth"
-          >
+          <Tabs textColor="inherit" sx={{ minWidth: '100%' }} variant="fullWidth">
             <Tab label="ABOUT" sx={navTabStyle} />
             <Tab label="PORTFOLIO" sx={navTabStyle} />
-            <Tab label="CONTACT" sx={navTabStyle} />
+            <Tab label="CONTACT" onClick={scrollToView} sx={navTabStyle} />
           </Tabs>
         </Box>
 
@@ -53,18 +56,16 @@ const NavBar = () => {
           top: 4
         }}>
           <Tabs
-            sx={{
-              width: '100%',
-              flexDirection: 'column',
-              gap: 3,
-              textAlign: 'center',
-            }}
+            sx={{ width: '100%', flexDirection: 'column', gap: 3, textAlign: 'center' }}
             textColor="inherit"
             variant="fullWidth"
           >
             <Tab label="ABOUT" sx={navTabStyle} onClick={toggleNav} />
             <Tab label="PORTFOLIO" sx={navTabStyle} onClick={toggleNav} />
-            <Tab label="CONTACT" sx={navTabStyle} onClick={toggleNav} />
+            <Tab label="CONTACT" sx={navTabStyle} onClick={() => {
+              setOpenMenu(!openMenu)
+              scrollToView()
+            }} />
           </Tabs>
         </Box>
       </Toolbar>
@@ -74,7 +75,7 @@ const NavBar = () => {
 
 const navTabStyle = {
   '&:hover': { borderBottom: '4px solid #FFA500', color: '#FFA500' },
-  borderBottom: '4px solid white'
+  borderBottom: '4px solid white',
 };
 
 export default NavBar;

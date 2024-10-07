@@ -23,8 +23,15 @@ const SkillSection = () => {
         'Critical Thinking',
     ];
 
+
     return (
-        <Box display={'flex'} gap={2} sx={{ flexDirection: { xs: 'column', sm: 'row' }, mx: { xs: 0, sm: 2 } }}>
+        <Box
+            display={'flex'}
+            gap={2}
+            sx={{
+                flexDirection: { xs: 'column', sm: 'row' },
+                mx: { xs: 0, sm: 2 }
+            }}>
 
             {/* Left Section  */}
 
