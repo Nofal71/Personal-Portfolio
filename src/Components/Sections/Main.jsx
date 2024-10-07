@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Typography, Button, IconButton, Avatar, Grid } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import CheckIcon from '@mui/icons-material/Check';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ProfilePhoto from '../../Assets';
 import MainCard from '../utils/MainCard';
 
 const Main = () => {
+    const [isCopied, setCopied] = useState(false);
     return (
         <MainCard>
-            
+
             {/* Left Section */}
             <Grid
                 container
@@ -55,14 +57,25 @@ const Main = () => {
                         Hire Me
                     </Button>
                     <Button
-                        variant="outlined"
-                        endIcon={<ContentCopyIcon />}
+                        onClick={() => {
+                            const textArea = document.createElement('textarea');
+                            textArea.value = 'hafiznofal76@gmail.com';
+                            document.body.appendChild(textArea);
+                            textArea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textArea);
+                            setCopied(true)
+                            setTimeout(() => setCopied(false), 5000)
+                        }}
+                        variant="contained"
+                        endIcon={!isCopied ? <ContentCopyIcon /> : <CheckIcon />}
                         sx={{
                             color: 'white',
                             borderColor: '#262626',
                             backgroundColor: 'black',
                             '&:hover': { backgroundColor: 'transparent' },
-                            textWrap: 'nowrap'
+                            textWrap: 'nowrap',
+                            fontSize: '.8rem'
                         }}
                         fullWidth
 
@@ -86,7 +99,7 @@ const Main = () => {
                 {/* Job Status */}
                 <Box
                     sx={{
-                        display: {xs:'none' , sm:'flex'},
+                        display: { xs: 'none', sm: 'flex' },
                         alignItems: 'center',
                         gap: 1,
                         bgcolor: 'black',

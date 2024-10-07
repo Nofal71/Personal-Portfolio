@@ -1,6 +1,6 @@
 import React from 'react'
 import MainCard from '../utils/MainCard'
-import { projectImages } from '../../Assets'
+import { projectInfo } from '../../Assets'
 import ProjectCard from '../utils/Project/ProjectCard'
 import { Box } from '@mui/system'
 import { Typography } from '@mui/material'
@@ -11,7 +11,7 @@ const ProjectSection = () => {
         <MainCard sx={{
             flexDirection: 'column'
         }}>
-            <Typography variant='h4' my={3} align='center' color='white'>Projects & Recent Work</Typography>
+            <Typography variant='h3' my={10} fontWeight={900} align='center' color='white'>Projects & Recent Work</Typography>
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -21,7 +21,7 @@ const ProjectSection = () => {
                 gap: 3
             }}>
                 {
-                    projectImages && projectImages.map((projects, index) => (
+                    projectInfo && projectInfo.map((projects, index) => (
                         <ProjectCard projects={projects} key={index} />
                     ))
                 }
