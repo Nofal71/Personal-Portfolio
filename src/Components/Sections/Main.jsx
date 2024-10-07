@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, IconButton, Avatar, Grid } from '@mui/material';
+import { Box, Typography, Button, Avatar, Grid } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import ProfilePhoto from '../../Assets';
 import MainCard from '../utils/MainCard';
+import JobStatus from '../utils/Main/JobStatus';
 
 const Main = () => {
     const [isCopied, setCopied] = useState(false);
@@ -97,27 +98,7 @@ const Main = () => {
                 }}
             >
                 {/* Job Status */}
-                <Box
-                    sx={{
-                        display: { xs: 'none', sm: 'flex' },
-                        alignItems: 'center',
-                        gap: 1,
-                        bgcolor: 'black',
-                        p: 1.5,
-                        borderRadius: '24px',
-                        my: { xs: 2, md: 3, lg: 4 },
-                        color: '#C0C0C0',
-                    }}
-                >
-                    <IconButton
-                        sx={{
-                            backgroundColor: '#E63E21',
-                            borderRadius: '50%',
-                            p: 1,
-                        }}
-                    />
-                    <Typography variant="body2">AVAILABLE FOR JOB</Typography>
-                </Box>
+                <JobStatus />
 
                 {/* Profile Image */}
                 <Box
