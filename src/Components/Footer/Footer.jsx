@@ -9,7 +9,7 @@ const Footer = () => {
         <MainCard sx={{
             background: 'linear-gradient(76.27deg, rgba(230, 62, 33, 0.2) 10.4%, rgba(51, 19, 14, 0) 25.53%), #1B1B1B',
             px: '4rem',
-            py: { xs: '2rem', sm: 0 }
+            py: { xs: '2rem', sm: 0 },
         }}>
             <Box sx={{
                 display: 'flex',

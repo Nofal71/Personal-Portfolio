@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
 import React from 'react';
-import MainCard from '../utils/MainCard';
 import SkillCard from '../utils/Skill/SkillCard';
 
 const SkillSection = () => {
@@ -25,7 +24,7 @@ const SkillSection = () => {
     ];
 
     return (
-        <MainCard sx={{ flexDirection: { xs: 'column', sm: 'row' } }}>
+        <Box display={'flex'} gap={2} sx={{ flexDirection: { xs: 'column', sm: 'row' }, mx: { xs: 0, sm: 2 } }}>
 
             {/* Left Section  */}
 
@@ -40,7 +39,7 @@ const SkillSection = () => {
                 borderRadius: '8px',
             }}>
                 <Typography variant='h4' color='white' sx={{ mt: 4, mb: 4, mx: 2, textAlign: 'center' }}>
-                    My Skills
+                    Technical Skills:
                 </Typography>
 
                 <Stack justifyContent={'center'} alignItems={'center'}>
@@ -62,7 +61,7 @@ const SkillSection = () => {
 
             <Box sx={{
                 width: { xs: 1, sm: 1 / 2 },
-                display: 'flex',
+                display: { sm: 'flex', xs: 'none' },
                 flexDirection: 'row',
                 flexWrap: 'wrap',
                 gap: 2
@@ -84,7 +83,7 @@ const SkillSection = () => {
                     </Box>
                 ))}
             </Box>
-        </MainCard>
+        </Box>
     );
 };
 

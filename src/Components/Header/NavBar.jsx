@@ -50,6 +50,7 @@ const NavBar = () => {
           width: '100%',
           inset: 0,
           backgroundColor: '#161616',
+          top: 4
         }}>
           <Tabs
             sx={{
