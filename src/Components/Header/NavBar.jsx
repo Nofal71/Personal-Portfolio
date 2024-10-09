@@ -59,10 +59,11 @@ const NavBar = () => {
             sx={{ width: '100%', flexDirection: 'column', gap: 3, textAlign: 'center' }}
             textColor="inherit"
             variant="fullWidth"
+            defaultValue={1}
           >
-            <Tab label="ABOUT" sx={navTabStyle} onClick={toggleNav} />
-            <Tab label="PORTFOLIO" sx={navTabStyle} onClick={toggleNav} />
-            <Tab label="CONTACT" sx={navTabStyle} onClick={() => {
+            <Tab label="ABOUT" value={1} sx={navTabStyle} onClick={toggleNav} />
+            <Tab label="PORTFOLIO" value={2} sx={navTabStyle} onClick={toggleNav} />
+            <Tab label="CONTACT" value={3} sx={navTabStyle} onClick={() => {
               setOpenMenu(!openMenu)
               scrollToView()
             }} />

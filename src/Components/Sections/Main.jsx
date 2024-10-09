@@ -1,127 +1,84 @@
-import React, { useState } from 'react';
-import { Box, Typography, Button, Avatar, Grid } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import CheckIcon from '@mui/icons-material/Check';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import ProfilePhoto from '../../Assets';
+import React from 'react';
+import { Box, Grid } from '@mui/material';
 import MainCard from '../utils/MainCard';
 import JobStatus from '../utils/Main/JobStatus';
+import DownloadCV from '../utils/Main/DownloadCV';
+import { CopyEmail } from '../utils/Main/Buttons';
+import ProfileImage from '../utils/Main/ProfileImage';
+import Hero from '../utils/Main/Hero';
+import { motion } from 'framer-motion';
 
 const Main = () => {
-    const [isCopied, setCopied] = useState(false);
     return (
-        <MainCard>
-
-            {/* Left Section */}
-            <Grid
-                container
-                direction="column"
-                justifyContent="flex-start"
-                alignItems="flex-start"
-                sx={{
-                    width: { xs: '100%', lg: '50%' },
-                    p: { xs: 2, md: 3, lg: 4 },
-                    gap: { xs: 3 }
-                }}
-            >
-                {/* Title */}
-                <Typography variant="h4" color="#C0C0C0" sx={{
-                    my: { xs: 0, md: 3, lg: 4 }, fontSize: {
-                        xs: '1rem',
-                        sm: '1.5rem',
-                    },
-                }}>
-                    Frontend Developer
-                </Typography>
-
-                {/* Intro */}
-                <Box sx={{ my: { xs: 0, md: 3, lg: 4 }, pr: { lg: 7 } }}>
-                    <Typography variant="h4" fontWeight="bold" sx={{ fontSize: { xs: '1.5rem', sm: '2.5rem' } }}>
-                        I'm Nofal Hassaan
-                    </Typography>
-                    <Typography color="#C0C0C0" sx={{ mt: 1 }}>
-                        As a Frontend Developer I design Dynamic Websites With Great Experience ..!
-                    </Typography>
-                </Box>
-
-                {/* Buttons */}
-                <Box display="flex" gap={2} alignItems={'center'} sx={{ pb: '5', flexDirection: { xs: 'column', sm: 'row' }, width: { xs: '100%', sm: 'auto' } }}>
-                    <Button
-                        variant="contained"
-                        endIcon={<AddIcon />}
-                        sx={{
-                            backgroundColor: '#E63E21',
-                            textWrap: 'nowrap'
-                        }}
-                        fullWidth
-                    >
-                        Hire Me
-                    </Button>
-                    <Button
-                        onClick={() => {
-                            const textArea = document.createElement('textarea');
-                            textArea.value = 'hafiznofal76@gmail.com';
-                            document.body.appendChild(textArea);
-                            textArea.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(textArea);
-                            setCopied(true)
-                            setTimeout(() => setCopied(false), 5000)
-                        }}
-                        variant="contained"
-                        endIcon={!isCopied ? <ContentCopyIcon /> : <CheckIcon />}
-                        sx={{
-                            color: 'white',
-                            borderColor: '#262626',
-                            backgroundColor: 'black',
-                            '&:hover': { backgroundColor: 'transparent' },
-                            textWrap: 'nowrap',
-                            fontSize: '.8rem'
-                        }}
-                        fullWidth
-
-                    >
-                        Copy Email
-                    </Button>
-                </Box>
-            </Grid>
-
-            {/* Right Section */}
-            <Grid
-                container
-                direction="column"
-                justifyContent="center"
-                alignItems={{ xs: 'flex-start', md: 'flex-end' }}
-                sx={{
-                    width: { xs: '100%', lg: '50%' },
-                    p: { xs: 2, md: 3, lg: 4 },
-                }}
-            >
-                {/* Job Status */}
-                <JobStatus />
-
-                {/* Profile Image */}
-                <Box
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
+            <MainCard>
+                {/* Left Section */}
+                <Grid
+                    container
+                    direction="column"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
                     sx={{
-                        border: '2px solid #E63E21',
-                        borderRadius: '50%',
-                        width: { xs: '100px', sm: '200px' },
-                        height: { xs: '100px', sm: '200px' },
-                        overflow: 'hidden',
-                        my: { xs: 0, md: 3, lg: 4 },
+                        width: { xs: '100%', lg: '50%' },
+                        p: { xs: 2, md: 3, lg: 4 },
+                        gap: { xs: 3 }
                     }}
                 >
-                    <Avatar
-                        src={ProfilePhoto}
-                        alt="Nofal Hassaan"
-                        sx={{
-                            width: '100%',
-                            height: '100%',
-                        }}
-                    />
-                </Box>
-            </Grid>
-        </MainCard>
+                    <motion.div
+                        initial={{ x: '-400%' }}
+                        animate={{ x: '0' }}
+                        transition={{ duration: 1 }}
+                    >
+                        <Hero />
+                    </motion.div>
+                    <motion.div
+                        initial={{ y: '400%' }}
+                        animate={{ y: '0' }}
+                        transition={{ duration: 1 }}
+                    >
+                        <Box display="flex" gap={2} alignItems={'center'} sx={{ pb: '5', flexDirection: { xs: 'column', sm: 'row' }, width: { xs: '100%', sm: 'auto' } }}>
+                            <DownloadCV />
+                            <CopyEmail />
+                        </Box>
+                    </motion.div>
+                </Grid>
+
+                {/* Right Section */}
+                <Grid
+                    container
+                    direction="column"
+                    justifyContent="center"
+                    alignItems={{ xs: 'flex-start', md: 'flex-end' }}
+                    sx={{
+                        width: { xs: '100%', lg: '50%' },
+                        p: { xs: 2, md: 3, lg: 4 },
+                    }}
+                >
+                    {/* Job Status */}
+                    <motion.div
+                        initial={{ y: '-400%' }}
+                        animate={{ y: '0' }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <JobStatus />
+                    </motion.div>
+
+                    {/* Profile Image */}
+                    <motion.div
+                        initial={{ x: '400%' }}
+                        animate={{ x: '0' }}
+                        transition={{ duration: 1 }}
+                    >
+                        <ProfileImage />
+                    </motion.div>
+
+                </Grid>
+            </MainCard>
+        </motion.div>
     );
 };
 

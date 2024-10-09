@@ -1,8 +1,21 @@
 import { LinearProgress, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import { useInView } from 'react-intersection-observer';
+import React, { useEffect, useState } from 'react';
 
 const SkillCard = ({ skill }) => {
+    const { ref, inView } = useInView({
+        threshold: 0.1, 
+    })
+    const [skillLevel, setSkillLevel] = useState(0)
+    useEffect(() => {
+        
+        if (inView) {
+            setSkillLevel(skill.level)
+        } else {
+            setSkillLevel(0)
+        }
+    }, [skill, inView])
     return (
         <Box sx={{
             background: 'linear-gradient(249.05deg, rgba(230, 62, 33, 0.2) 18.59%, rgba(51, 19, 14, 0) 53.25%), #1B1B1B',
@@ -17,15 +30,15 @@ const SkillCard = ({ skill }) => {
             width: '100%',
             '&:hover': {
                 transform: 'scale(1.02)',
-                cursor:'pointer'
+                cursor: 'pointer'
 
             },
         }}>
             <Box sx={{
                 display: 'flex',
-                justifyContent: 'space-between', 
+                justifyContent: 'space-between',
                 alignItems: 'center',
-                mb: 1, 
+                mb: 1,
             }}>
                 <Typography variant='h7' color='white'>
                     {skill.name}
@@ -35,11 +48,12 @@ const SkillCard = ({ skill }) => {
                 </Typography>
             </Box>
             <LinearProgress
+                ref={ref}
                 variant="determinate"
-                value={skill.level}
+                value={skillLevel}
                 sx={{
-                    width: '100%', 
-                    height: '5px', 
+                    width: '100%',
+                    height: '5px',
                     backgroundColor: 'rgba(51, 19, 14, 0.5)',
                     '& .MuiLinearProgress-bar': {
                         backgroundColor: '#FF4500',

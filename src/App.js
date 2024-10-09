@@ -5,11 +5,12 @@ import SkillSection from './Components/Sections/SkillSection'
 import Main from './Components/Sections/Main'
 import Footer from './Components/Footer/Footer'
 import ScrollContext from './ContextAPI/ScrollContext'
-import ContactUs from './Components/Sections/ContactUs'
+import { Box } from '@mui/system'
+import ContactUs from './Components/Sections/ContactUs.tsx'
 
 const App = () => {
   return (
-    <div className='h-full md:p-4 w-full bg-black'>
+    <Box sx={{ p: { xs: 0, sm: 3 }, m: 0, width: 1, backgroundColor: 'black' }}>
       <ScrollContext>
         <NavBar />
         <Main />
@@ -18,7 +19,7 @@ const App = () => {
         <ContactUs />
         <Footer />
       </ScrollContext>
-    </div>
+    </Box>
   )
 }
 

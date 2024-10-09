@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import { Box, Stack } from '@mui/system';
 import React from 'react';
 import SkillCard from '../utils/Skill/SkillCard';
+import SkillCardTwo from '../utils/Skill/SkillCardTwo';
 
 const SkillSection = () => {
     const skills = [
@@ -32,9 +33,7 @@ const SkillSection = () => {
                 flexDirection: { xs: 'column', sm: 'row' },
                 mx: { xs: 0, sm: 2 }
             }}>
-
             {/* Left Section  */}
-
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -74,20 +73,7 @@ const SkillSection = () => {
                 gap: 2
             }} >
                 {frontendSoftSkills.map((e, i) => (
-                    <Box key={i} sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        color: '#C0C0C0',
-                        fontWeight: '900',
-                        background: 'linear-gradient(249.05deg, rgba(230, 62, 33, 0.2) 18.59%, rgba(51, 19, 14, 0) 53.25%), #1B1B1B',
-                        p: 2,
-                        border: '1px solid #262626',
-                        borderRadius: '8px',
-                        flexGrow: { sm: i % 3 === 2 ? 1 : 0.5, xs: 1 }
-                    }}>
-                        <Typography variant='h5'>{e}</Typography>
-                    </Box>
+                    <SkillCardTwo key={i} index={i} skill={e} />
                 ))}
             </Box>
         </Box>

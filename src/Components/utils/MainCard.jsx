@@ -1,9 +1,15 @@
 import { Box } from '@mui/system';
+import { motion } from 'framer-motion';
 import React from 'react';
+
+const MotionBox = motion(Box);  
 
 const MainCard = ({ children, sx, ...props }) => {
   return (
-    <Box
+    <MotionBox
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
       sx={{
         display: 'flex',
         flexDirection: { xs: 'column-reverse', md: 'row' },
@@ -19,7 +25,7 @@ const MainCard = ({ children, sx, ...props }) => {
       {...props}
     >
       {children}
-    </Box>
+    </MotionBox>
   );
 };
 
