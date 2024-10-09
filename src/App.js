@@ -10,7 +10,7 @@ import ContactUs from './Components/Sections/ContactUs.tsx'
 
 const App = () => {
   return (
-    <Box sx={{ p: { xs: 0, sm: 3 }, m: 0, width: 1, backgroundColor: 'black' }}>
+    <Box sx={{ p: { xs: 0, sm: 3 }, m: 0, backgroundColor: 'black' }}>
       <ScrollContext>
         <NavBar />
         <Main />

@@ -86,7 +86,7 @@ const ContactUs = () => {
           <TextField
             variant="outlined"
             fullWidth
-            inputRef={inputData.name}  // Attach ref here
+            inputRef={inputData.name}  
             InputLabelProps={{ style: { color: 'white' } }}
             sx={{
               marginBottom: '1rem',
@@ -103,7 +103,7 @@ const ContactUs = () => {
           <TextField
             variant="outlined"
             fullWidth
-            inputRef={inputData.email}  // Attach ref here
+            inputRef={inputData.email}  
             InputLabelProps={{ style: { color: 'white' } }}
             sx={{
               marginBottom: '1rem',
@@ -122,7 +122,7 @@ const ContactUs = () => {
             fullWidth
             multiline
             rows={4}
-            inputRef={inputData.message}  // Attach ref here
+            inputRef={inputData.message}  
             InputLabelProps={{ style: { color: 'white' } }}
             sx={{
               input: { color: 'white' },

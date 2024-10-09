@@ -2,7 +2,7 @@ import { Box } from '@mui/system';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-const MotionBox = motion(Box);  
+const MotionBox = motion(Box);
 
 const MainCard = ({ children, sx, ...props }) => {
   return (
