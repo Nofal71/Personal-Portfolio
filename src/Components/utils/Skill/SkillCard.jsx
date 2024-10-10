@@ -52,7 +52,6 @@ const SkillCard = ({ skill }) => {
                 variant="determinate"
                 value={skillLevel}
                 sx={{
-                    width: '100%',
                     height: '5px',
                     backgroundColor: 'rgba(51, 19, 14, 0.5)',
                     '& .MuiLinearProgress-bar': {

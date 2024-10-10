@@ -50,7 +50,6 @@ const NavBar = () => {
           position: 'absolute',
           display: openMenu ? 'block' : 'none',
           zIndex: 200,
-          width: '100%',
           inset: 0,
           backgroundColor: '#161616',
           top: 4

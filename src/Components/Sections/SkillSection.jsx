@@ -39,7 +39,7 @@ const SkillSection = () => {
                 flexDirection: 'column',
                 backgroundColor: '#161616',
                 p: 2,
-                width: { xs: 1, sm: 1 / 2 },
+                width: {sm: 1 / 2 },
                 border: '1px solid #262626',
                 color: 'white',
                 borderRadius: '8px',
