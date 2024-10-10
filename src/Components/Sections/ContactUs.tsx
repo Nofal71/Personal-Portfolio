@@ -74,10 +74,10 @@ const ContactUs = () => {
         </Typography>
         <MainCard
           sx={{
-            width: { xs: "100%", sm: 1 / 2 },
+            width: { sm: 1 / 2 },
             flexDirection: 'column',
             backgroundColor: '#1e1e1e',
-            padding: '2rem',
+            padding: { sm: '2rem' },
             borderRadius: '10px',
             color: 'white'
           }}
@@ -86,7 +86,7 @@ const ContactUs = () => {
           <TextField
             variant="outlined"
             fullWidth
-            inputRef={inputData.name}  
+            inputRef={inputData.name}
             InputLabelProps={{ style: { color: 'white' } }}
             sx={{
               marginBottom: '1rem',
@@ -103,7 +103,7 @@ const ContactUs = () => {
           <TextField
             variant="outlined"
             fullWidth
-            inputRef={inputData.email}  
+            inputRef={inputData.email}
             InputLabelProps={{ style: { color: 'white' } }}
             sx={{
               marginBottom: '1rem',
@@ -122,7 +122,7 @@ const ContactUs = () => {
             fullWidth
             multiline
             rows={4}
-            inputRef={inputData.message}  
+            inputRef={inputData.message}
             InputLabelProps={{ style: { color: 'white' } }}
             sx={{
               input: { color: 'white' },
