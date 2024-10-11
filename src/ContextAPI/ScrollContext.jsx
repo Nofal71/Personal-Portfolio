@@ -5,10 +5,10 @@ export const scrollContext = createContext();
 const ScrollProvider = ({ children }) => {
   const contactUs = useRef(null);
   const aboutMe = useRef(null);
-  const myProjects = useRef(null);
+  const myExperties = useRef(null);
 
   return (
-    <scrollContext.Provider value={{ contactUs, aboutMe, myProjects }}>
+    <scrollContext.Provider value={{ contactUs, aboutMe, myExperties }}>
       {children}
     </scrollContext.Provider>
   );
