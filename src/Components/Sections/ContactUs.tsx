@@ -82,8 +82,8 @@ const ContactUs = () => {
             color: 'white'
           }}
         >
-          <InputLabel sx={{ color: 'white', marginBottom: '0.5rem' }}>Name</InputLabel>
-          <TextField
+          <InputLabel sx={{ color: 'white', marginBottom: '0.5rem' }} >Name</InputLabel>
+          <TextField 
             variant="outlined"
             fullWidth
             inputRef={inputData.name}
