@@ -1,12 +1,13 @@
 import { Box } from '@mui/system';
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 const MotionBox = motion(Box);
 
-const MainCard = ({ children, sx, ...props }) => {
+const MainCard = forwardRef(({ children, sx, ...props }, ref) => {
   return (
     <MotionBox
+      ref={ref} 
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -27,6 +28,8 @@ const MainCard = ({ children, sx, ...props }) => {
       {children}
     </MotionBox>
   );
-};
+});
+
+MainCard.displayName = 'MainCard';
 
 export default MainCard;

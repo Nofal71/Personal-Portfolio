@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, Grid } from '@mui/material';
 import MainCard from '../utils/MainCard';
 import JobStatus from '../utils/Main/JobStatus';
@@ -7,13 +7,16 @@ import { CopyEmail } from '../utils/Main/Buttons';
 import ProfileImage from '../utils/Main/ProfileImage';
 import Hero from '../utils/Main/Hero';
 import { motion } from 'framer-motion';
+import { scrollContext } from '../../ContextAPI/ScrollContext';
 
 const ParentBox = motion(MainCard);
 
 
 const Main = () => {
+    const { aboutMe } = useContext(scrollContext)
     return (
         <ParentBox
+            ref={aboutMe}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}

@@ -17,11 +17,17 @@ const theme = createTheme({
 const NavBar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const isXs = useMediaQuery(() => theme.breakpoints.down('tablet'));
-  const contactUs = useContext(scrollContext);
+  const { contactUs, aboutMe, myProjects } = useContext(scrollContext);
+  
+  const navItems = [
+    { label: 'ABOUT Me', ref: aboutMe },
+    { label: 'Projects', ref: myProjects },
+    { label: 'CONTACT', ref: contactUs },
+  ];
 
-  const scrollToView = () => {
-    console.log(contactUs.current); // Ensure this is not null
-    contactUs.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToView = (ref) => {
+    console.log(ref.current); // Ensure this is not null
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const toggleNav = () => {
@@ -39,9 +45,14 @@ const NavBar = () => {
         {/* Desktop Nav */}
         <Box sx={{ flexGrow: 1, justifyContent: 'center', display: { xs: 'none', sm: 'flex' } }}>
           <Tabs textColor="inherit" sx={{ minWidth: '100%' }} variant="fullWidth">
-            <Tab label="ABOUT" sx={navTabStyle} />
-            <Tab label="PORTFOLIO" sx={navTabStyle} />
-            <Tab label="CONTACT" onClick={scrollToView} sx={navTabStyle} />
+            {navItems.map((item, index) => (
+              <Tab
+                key={index}
+                label={item.label}
+                sx={navTabStyle}
+                onClick={() => scrollToView(item.ref)} 
+              />
+            ))}
           </Tabs>
         </Box>
 
@@ -59,12 +70,17 @@ const NavBar = () => {
             textColor="inherit"
             variant="fullWidth"
           >
-            <Tab label="ABOUT" sx={navTabStyle} onClick={toggleNav} />
-            <Tab label="PORTFOLIO" sx={navTabStyle} onClick={toggleNav} />
-            <Tab label="CONTACT" sx={navTabStyle} onClick={() => {
-              setOpenMenu(!openMenu)
-              scrollToView()
-            }} />
+            {navItems.map((item, index) => (
+              <Tab
+                key={index}
+                label={item.label}
+                sx={navTabStyle}
+                onClick={() => {
+                  setOpenMenu(!openMenu);
+                  scrollToView(item.ref); 
+                }}
+              />
+            ))}
           </Tabs>
         </Box>
       </Toolbar>

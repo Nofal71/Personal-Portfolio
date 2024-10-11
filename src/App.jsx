@@ -6,7 +6,7 @@ import Main from './Components/Sections/Main.jsx'
 import Footer from './Components/Footer/Footer.jsx'
 import ScrollContext from './ContextAPI/ScrollContext.jsx'
 import { Box } from '@mui/system'
-import ContactUs from './Components/Sections/ContactUs.tsx'
+import ContactUs from './Components/Sections/ContactUs.jsx'
 
 const App = () => {
   return (

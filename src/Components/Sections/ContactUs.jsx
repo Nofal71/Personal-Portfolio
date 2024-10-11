@@ -4,43 +4,30 @@ import { InputLabel, TextField, Typography, Button } from '@mui/material';
 import { scrollContext } from '../../ContextAPI/ScrollContext';
 import axios from 'axios';
 
-// Correctly define the ref types for inputs and textarea
-interface InputDataTypes {
-  name: React.RefObject<HTMLInputElement>,
-  email: React.RefObject<HTMLInputElement>,
-  message: React.RefObject<HTMLTextAreaElement>
-}
-
-interface formData {
-  name: string,
-  email: string,
-  message: string
-}
-
 const ContactUs = () => {
-  const [isSubmitting, setSubmit] = useState<Boolean>(false)
-  const inputData: InputDataTypes = {
+  const [isSubmitting, setSubmit] = useState(false);
+  const inputData = {
     name: useRef(null),
     email: useRef(null),
     message: useRef(null),
   };
 
-  const saveFormData = async (formData: formData) => {
-    await axios.post('http://localhost:3001/data', formData)
-  }
+  const saveFormData = async (formData) => {
+    await axios.post('http://localhost:3001/data', formData);
+  };
 
   const handleSave = async () => {
-    setSubmit(true)
+    setSubmit(true);
     try {
       await saveFormData({
         name: inputData.name.current?.value || '',
         email: inputData.email.current?.value || '',
         message: inputData.message.current?.value || ''
-      })
-      setSubmit(false)
+      });
+      setSubmit(false);
     } catch (error) {
-      setSubmit(false)
-      console.log(error, 'Error in submitting data')
+      setSubmit(false);
+      console.log(error, 'Error in submitting data');
     }
 
     if (inputData.name.current && inputData.email.current && inputData.message.current) {
@@ -50,10 +37,10 @@ const ContactUs = () => {
     }
   };
 
-  const ContactUs = useContext(scrollContext)
+  const { contactUs } = useContext(scrollContext);
 
   return (
-    <div ref={ContactUs}>
+    <div ref={contactUs}>
       <MainCard
         sx={{
           justifyContent: 'center',
@@ -82,8 +69,8 @@ const ContactUs = () => {
             color: 'white'
           }}
         >
-          <InputLabel sx={{ color: 'white', marginBottom: '0.5rem' }} >Name</InputLabel>
-          <TextField 
+          <InputLabel sx={{ color: 'white', marginBottom: '0.5rem' }}>Name</InputLabel>
+          <TextField
             variant="outlined"
             fullWidth
             inputRef={inputData.name}

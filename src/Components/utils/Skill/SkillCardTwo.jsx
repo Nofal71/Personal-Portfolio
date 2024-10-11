@@ -5,9 +5,9 @@ import React from 'react';
 const SkillCardTwo = ({ index, skill }) => {
     return (
         <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            initial={{ scale: '0.5' , transitionDuration: '1s', }}
+            whileInView={{ scale: '1', transitionDuration: '1s', }}
+            whileHover={{ cursor: 'pointer', scale: '1.03', transitionDuration: '1s' }}
             style={{
                 display: 'flex',
                 justifyContent: 'center',

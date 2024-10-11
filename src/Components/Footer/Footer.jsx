@@ -6,6 +6,11 @@ import JobStatus from '../utils/Main/JobStatus';
 
 const Footer = () => {
 
+    const footerLinks = [
+        { text: 'Whatsapp', Color: '#25D366', navigateTo: 'https://wa.me/qr/I2UDPZUEM4KUG1' },
+        { text: 'LinkedIn', Color: '#0077B5', navigateTo: 'https://www.linkedin.com/in/nofal-hassaan-421354296/' },
+    ]
+
     return (
         <MainCard sx={{
             background: 'linear-gradient(76.27deg, rgba(230, 62, 33, 0.2) 10.4%, rgba(51, 19, 14, 0) 25.53%), #1B1B1B',
@@ -22,18 +27,18 @@ const Footer = () => {
             }}>
                 <Typography variant='h5' color='#C0C0C0'>Portfolio</Typography>
                 <Stack direction={'row'} spacing={3}>
-                    <Typography component={'a'} target='_blank' href='https://wa.me/qr/I2UDPZUEM4KUG1' sx={{
-                        cursor: 'pointer',
-                        ":hover": {
-                            color: '#25D366',
-                        }
-                    }}>WhatsApp</Typography>
-                    <Typography component={'a'} target='_blank' href='https://www.linkedin.com/in/nofal-hassaan-421354296/' sx={{
-                        cursor: 'pointer',
-                        ":hover": {
-                            color: '#0077B5',
-                        }
-                    }}>LinkedIn</Typography>
+                    {
+                        footerLinks.map((link, index) => (
+                            <Typography key={index} component={'a'} target='_blank' href={link.navigateTo} sx={{
+                                cursor: 'pointer',
+                                textDecoration: 'none',
+                                color: 'white',
+                                ":hover": {
+                                    color: link.Color,
+                                }
+                            }}>{link.text}</Typography>
+                        ))
+                    }
                 </Stack>
                 <JobStatus />
             </Box>
