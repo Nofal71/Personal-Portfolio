@@ -8,11 +8,12 @@ import { scrollContext } from '../../ContextAPI/ScrollContext'
 
 const ProjectSection = () => {
 
-    const { myProjects } = useContext(scrollContext)
+    const { projects } = useContext(scrollContext)
     return (
-        <div ref={myProjects}>
+        <div ref={projects}>
             <MainCard sx={{
-                flexDirection: 'column'
+                flexDirection: 'column',
+                pb:10
             }}>
                 <Typography variant='h3' my={10} fontWeight={900} align='center' color='white'>Projects & Recent Work</Typography>
                 <Box sx={{

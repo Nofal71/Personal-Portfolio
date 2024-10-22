@@ -17,17 +17,18 @@ const theme = createTheme({
 const NavBar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const isXs = useMediaQuery(() => theme.breakpoints.down('tablet'));
-  const { contactUs, aboutMe, myProjects } = useContext(scrollContext);
-  
+  const { contactUs, aboutMe, projects } = useContext(scrollContext);
+  const [activeTab, setActiveTab] = useState(0); 
+
   const navItems = [
     { label: 'ABOUT Me', ref: aboutMe },
-    { label: 'Projects', ref: myProjects },
+    { label: 'Projects', ref: projects },
     { label: 'CONTACT', ref: contactUs },
   ];
 
-  const scrollToView = (ref) => {
-    console.log(ref.current); // Ensure this is not null
+  const scrollToView = (ref, index) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
+   setActiveTab(index);
   };
 
   const toggleNav = () => {
@@ -49,8 +50,8 @@ const NavBar = () => {
               <Tab
                 key={index}
                 label={item.label}
-                sx={navTabStyle}
-                onClick={() => scrollToView(item.ref)} 
+                sx={index === activeTab ? activeTabStyle : navTabStyle}
+                onClick={() => scrollToView(item.ref, index)}
               />
             ))}
           </Tabs>
@@ -77,7 +78,7 @@ const NavBar = () => {
                 sx={navTabStyle}
                 onClick={() => {
                   setOpenMenu(!openMenu);
-                  scrollToView(item.ref); 
+                  scrollToView(item.ref);
                 }}
               />
             ))}
@@ -91,6 +92,13 @@ const NavBar = () => {
 const navTabStyle = {
   '&:hover': { borderBottom: '4px solid #FFA500', color: '#FFA500' },
   borderBottom: '4px solid white',
+  marginTop: { xs: 1, sm: 0 }
+};
+
+const activeTabStyle = {
+  borderBottom: '4px solid #FFA500',
+  color: '#FFA500',
+  marginTop: { xs: 1, sm: 0 }
 };
 
 export default NavBar;

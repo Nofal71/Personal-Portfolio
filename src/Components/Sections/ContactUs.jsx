@@ -61,12 +61,13 @@ const ContactUs = () => {
         </Typography>
         <MainCard
           sx={{
-            width: { sm: 1 / 2 },
+            width: { xs: .75, sm: 1 / 2 },
             flexDirection: 'column',
             backgroundColor: '#1e1e1e',
             padding: { sm: '2rem' },
             borderRadius: '10px',
-            color: 'white'
+            color: 'white',
+            marginBottom: { xs: 3, sm: 0 }
           }}
         >
           <InputLabel sx={{ color: 'white', marginBottom: '0.5rem' }}>Name</InputLabel>
@@ -110,9 +111,8 @@ const ContactUs = () => {
             multiline
             rows={4}
             inputRef={inputData.message}
-            InputLabelProps={{ style: { color: 'white' } }}
             sx={{
-              input: { color: 'white' },
+              color: 'white',
               '& .MuiOutlinedInput-root': {
                 '& fieldset': { borderColor: 'white' },
                 '&:hover fieldset': { borderColor: 'white' },
@@ -123,8 +123,7 @@ const ContactUs = () => {
 
           <Button
             variant="contained"
-            color="primary"
-            sx={{ marginTop: '1rem', textTransform: 'capitalize' }}
+            sx={{ marginTop: '1rem', textTransform: 'capitalize', backgroundColor: 'rgba(230, 62, 33, 0.2)' }}
             onClick={handleSave}
           >
             {isSubmitting ? 'Submitting.....' : 'Submit'}
