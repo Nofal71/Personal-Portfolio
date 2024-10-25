@@ -5,15 +5,19 @@ import ProjectCard from '../utils/Project/ProjectCard'
 import { Box } from '@mui/system'
 import { Typography } from '@mui/material'
 import { scrollContext } from '../../ContextAPI/ScrollContext'
+import { motion } from 'framer-motion'
 
 const ProjectSection = () => {
 
-    const { projects } = useContext(scrollContext)
+    const { projects, setActiveTab } = useContext(scrollContext)
     return (
-        <div ref={projects}>
+        <motion.div
+            ref={projects}
+            whileInView={() => setActiveTab(1)}
+        >
             <MainCard sx={{
                 flexDirection: 'column',
-                pb:10
+                pb: 10
             }}>
                 <Typography variant='h3' my={10} fontWeight={900} align='center' color='white'>Projects & Recent Work</Typography>
                 <Box sx={{
@@ -31,7 +35,7 @@ const ProjectSection = () => {
                     }
                 </Box>
             </MainCard>
-        </div>
+        </motion.div>
 
     )
 }

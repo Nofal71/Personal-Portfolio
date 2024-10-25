@@ -17,8 +17,7 @@ const theme = createTheme({
 const NavBar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const isXs = useMediaQuery(() => theme.breakpoints.down('tablet'));
-  const { contactUs, aboutMe, projects } = useContext(scrollContext);
-  const [activeTab, setActiveTab] = useState(0); 
+  const { contactUs, aboutMe, projects , activeTab , setActiveTab  } = useContext(scrollContext);
 
   const navItems = [
     { label: 'ABOUT Me', ref: aboutMe },

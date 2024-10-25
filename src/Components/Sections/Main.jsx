@@ -13,13 +13,14 @@ const ParentBox = motion(MainCard);
 
 
 const Main = () => {
-    const { aboutMe } = useContext(scrollContext)
+    const { aboutMe, setActiveTab } = useContext(scrollContext)
     return (
         <ParentBox
             ref={aboutMe}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
+            whileInView={() => setActiveTab(0)}
         >
             {/* Left Section */}
             <Grid

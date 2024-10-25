@@ -3,6 +3,7 @@ import MainCard from '../utils/MainCard';
 import { InputLabel, TextField, Typography, Button } from '@mui/material';
 import { scrollContext } from '../../ContextAPI/ScrollContext';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const ContactUs = () => {
   const [isSubmitting, setSubmit] = useState(false);
@@ -37,10 +38,12 @@ const ContactUs = () => {
     }
   };
 
-  const { contactUs } = useContext(scrollContext);
+  const { contactUs, setActiveTab } = useContext(scrollContext);
 
   return (
-    <div ref={contactUs}>
+    <motion.div
+      whileInView={() => setActiveTab(2)}
+      ref={contactUs}>
       <MainCard
         sx={{
           justifyContent: 'center',
@@ -130,7 +133,7 @@ const ContactUs = () => {
           </Button>
         </MainCard>
       </MainCard>
-    </div>
+    </motion.div>
   );
 };
 
