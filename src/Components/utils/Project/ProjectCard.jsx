@@ -34,14 +34,22 @@ const ProjectCard = ({ projects }) => {
                     borderRadius: '8px',
                     opacity: 0.65,
                     transition: 'opacity 0.3s ease',
+                    width: '100%',
+                    maxWidth: '300px',
+                    aspectRatio: '6/3',
                 }}
             >
-                <img src={projects.image} alt='Project' style={{
-                    height: '10rem',
-                    objectFit: 'contain',
-                    aspectRatio: '6/3',
-                }} />
+                <img
+                    src={projects.image}
+                    alt="Project"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                    }}
+                />
             </motion.div>
+
 
             <Box display={'flex'} width={1} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
                 <Typography flexGrow={1} align='center' variant='h5'>
