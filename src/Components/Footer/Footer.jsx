@@ -9,6 +9,7 @@ const Footer = () => {
     const footerLinks = [
         { text: 'Whatsapp', Color: '#25D366', navigateTo: 'https://wa.me/qr/I2UDPZUEM4KUG1' },
         { text: 'LinkedIn', Color: '#0077B5', navigateTo: 'https://www.linkedin.com/in/nofal-hassaan-421354296/' },
+        { text: 'GitHub', Color: '#3D3D3D', navigateTo: 'https://github.com/Nofal71' },
     ]
 
     return (
