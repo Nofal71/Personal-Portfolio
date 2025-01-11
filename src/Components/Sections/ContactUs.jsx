@@ -1,12 +1,13 @@
 import React, { useContext, useRef, useState } from 'react';
 import MainCard from '../utils/MainCard';
-import { InputLabel, TextField, Typography, Button } from '@mui/material';
+import { InputLabel, TextField, Typography, Button, Snackbar, Alert } from '@mui/material';
 import { scrollContext } from '../../ContextAPI/ScrollContext';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 
 const ContactUs = () => {
   const [isSubmitting, setSubmit] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
   const inputData = {
     name: useRef(null),
     email: useRef(null),
@@ -14,8 +15,9 @@ const ContactUs = () => {
   };
 
   const saveFormData = async (formData) => {
-    await axios.post('http://localhost:3001/data', formData);
+    await axios.post('https://6781ebbbc51d092c3dcdacc6.mockapi.io/portfolio/formData', formData);
   };
+
 
   const handleSave = async () => {
     setSubmit(true);
@@ -23,27 +25,25 @@ const ContactUs = () => {
       await saveFormData({
         name: inputData.name.current?.value || '',
         email: inputData.email.current?.value || '',
-        message: inputData.message.current?.value || ''
+        message: inputData.message.current?.value || '',
       });
       setSubmit(false);
+      setOpenSnackbar(true);
+      if (inputData.name.current && inputData.email.current && inputData.message.current) {
+        inputData.name.current.value = '';
+        inputData.email.current.value = '';
+        inputData.message.current.value = '';
+      }
     } catch (error) {
       setSubmit(false);
       console.log(error, 'Error in submitting data');
-    }
-
-    if (inputData.name.current && inputData.email.current && inputData.message.current) {
-      inputData.email.current.value = '';
-      inputData.message.current.value = '';
-      inputData.name.current.value = '';
     }
   };
 
   const { contactUs, setActiveTab } = useContext(scrollContext);
 
   return (
-    <motion.div
-      whileInView={() => setActiveTab(2)}
-      ref={contactUs}>
+    <motion.div whileInView={() => setActiveTab(2)} ref={contactUs}>
       <MainCard
         sx={{
           justifyContent: 'center',
@@ -51,26 +51,21 @@ const ContactUs = () => {
           flexDirection: 'column',
           backgroundColor: '#121212',
           padding: { xs: 0, sm: '2rem' },
-          paddingTop: { xs: '2rem' }
+          paddingTop: { xs: '2rem' },
         }}
       >
-        <Typography
-          variant="h4"
-          align="center"
-          gutterBottom
-          sx={{ color: 'white' }}
-        >
+        <Typography variant="h4" align="center" gutterBottom sx={{ color: 'white' }}>
           Get in Touch
         </Typography>
         <MainCard
           sx={{
-            width: { xs: .75, sm: 1 / 2 },
+            width: { xs: 0.75, sm: 1 / 2 },
             flexDirection: 'column',
             backgroundColor: '#1e1e1e',
             padding: { sm: '2rem' },
             borderRadius: '10px',
             color: 'white',
-            marginBottom: { xs: 3, sm: 0 }
+            marginBottom: { xs: 3, sm: 0 },
           }}
         >
           <InputLabel sx={{ color: 'white', marginBottom: '0.5rem' }}>Name</InputLabel>
@@ -85,8 +80,8 @@ const ContactUs = () => {
               '& .MuiOutlinedInput-root': {
                 '& fieldset': { borderColor: 'white' },
                 '&:hover fieldset': { borderColor: 'white' },
-                '&.Mui-focused fieldset': { borderColor: '#64b5f6' }
-              }
+                '&.Mui-focused fieldset': { borderColor: '#64b5f6' },
+              },
             }}
           />
 
@@ -102,8 +97,8 @@ const ContactUs = () => {
               '& .MuiOutlinedInput-root': {
                 '& fieldset': { borderColor: 'white' },
                 '&:hover fieldset': { borderColor: 'white' },
-                '&.Mui-focused fieldset': { borderColor: '#64b5f6' }
-              }
+                '&.Mui-focused fieldset': { borderColor: '#64b5f6' },
+              },
             }}
           />
 
@@ -115,12 +110,13 @@ const ContactUs = () => {
             rows={4}
             inputRef={inputData.message}
             sx={{
-              color: 'white',
+              color: 'white !important',
+              input: { color: '#f5a623 !important' }, 
               '& .MuiOutlinedInput-root': {
                 '& fieldset': { borderColor: 'white' },
                 '&:hover fieldset': { borderColor: 'white' },
-                '&.Mui-focused fieldset': { borderColor: '#64b5f6' }
-              }
+                '&.Mui-focused fieldset': { borderColor: '#64b5f6' },
+              },
             }}
           />
 
@@ -133,6 +129,12 @@ const ContactUs = () => {
           </Button>
         </MainCard>
       </MainCard>
+
+      <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
+        <Alert onClose={() => setOpenSnackbar(false)} severity="success" sx={{ width: '100%' }}>
+          Thank you for getting in touch!
+        </Alert>
+      </Snackbar>
     </motion.div>
   );
 };
