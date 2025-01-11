@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Typography, Box, Stack, Grid, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -10,11 +10,61 @@ const libraries = [
     { name: 'Framer Motion', color: '#ed1e79' },
     { name: 'React Router', color: '#ca4246' },
     { name: 'Redux Toolkit', color: '#764abc' },
+    { name: 'React Hook Form', color: 'blue' },
+    { name: 'React Query', color: 'green' },
+    { name: 'Axios', color: 'gray' },
 ];
+
+const LibraryCard = ({lib}) => {
+    const cardRef = useRef(null);
+    const handleHover = (e) => {
+        const { clientX, clientY, currentTarget } = e;
+        const { clientWidth, clientHeight } = currentTarget;
+        const offsetLeft = currentTarget.getBoundingClientRect().left;
+        const offsetTop = currentTarget.getBoundingClientRect().top;
+
+        const horizontal = (clientX - offsetLeft) / clientWidth;
+        const vertical = (clientY - offsetTop) / clientHeight;
+
+        const THRESHOLD = 30;
+        const rotateX = (THRESHOLD / 2 - horizontal * THRESHOLD).toFixed(2);
+        const rotateY = (vertical * THRESHOLD - THRESHOLD / 2).toFixed(2);
+
+        cardRef.current.style.transform = `rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
+    };
+
+    const resetStyles = () => {
+        cardRef.current.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    };
+
+    return (
+        <motion.div
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+        >
+            <Box
+                ref={cardRef}
+                onMouseMove={handleHover}
+                onMouseLeave={resetStyles}
+                sx={{
+                    borderRadius: 2,
+                    p: 2,
+                    cursor:'pointer',
+                    textAlign: 'center',
+                    backgroundColor: lib.color,
+                    color: '#fff',
+                    fontWeight: 700,
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                }}
+            >
+                {lib.name}
+            </Box>
+        </motion.div>
+    )
+}
 
 const ReactSnap = () => {
     const githubLink = 'https://github.com/Nofal71/SnapReact';
-
     return (
         <MainCard
             sx={{
@@ -85,24 +135,7 @@ const ReactSnap = () => {
                     <Grid container spacing={3} justifyContent="center">
                         {libraries.map((lib, index) => (
                             <Grid item key={index} xs={6} sm={4} md={2}>
-                                <motion.div
-                                    whileHover={{ scale: 1.1 }}
-                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                >
-                                    <Box
-                                        sx={{
-                                            borderRadius: 2,
-                                            p: 2,
-                                            textAlign: 'center',
-                                            backgroundColor: lib.color,
-                                            color: '#fff',
-                                            fontWeight: 700,
-                                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                                        }}
-                                    >
-                                        {lib.name}
-                                    </Box>
-                                </motion.div>
+                                <LibraryCard lib={lib} />
                             </Grid>
                         ))}
                     </Grid>
