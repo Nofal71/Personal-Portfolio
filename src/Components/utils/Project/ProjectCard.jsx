@@ -1,8 +1,9 @@
 import { Box } from '@mui/system';
 import React from 'react';
-import { Typography } from '@mui/material';
+import { Tooltip, Typography } from '@mui/material';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import { motion } from 'framer-motion';
+import { GitHub } from '@mui/icons-material';
 
 const ProjectCard = ({ projects }) => {
     return (
@@ -36,7 +37,7 @@ const ProjectCard = ({ projects }) => {
                     transition: 'opacity 0.3s ease',
                     width: '100%',
                     maxWidth: '300px',
-                    aspectRatio: '6/3',
+                    aspectRatio: '16/9'
                 }}
             >
                 <img
@@ -45,31 +46,51 @@ const ProjectCard = ({ projects }) => {
                     style={{
                         width: '100%',
                         height: '100%',
-                        objectFit: 'cover',
+                        objectFit: 'contain',
                     }}
                 />
             </motion.div>
 
 
             <Box display={'flex'} width={1} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
+                <Tooltip title='View On Github'>
+                    <a href={projects?.github} target='_blank' rel="noopener noreferrer">
+                        <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        >
+                            <GitHub
+                                sx={{
+                                    backgroundColor: 'rgba(230, 62, 33, 0.2)',
+                                    ml: 'auto',
+                                    cursor: 'pointer',
+                                    color: '#ca3116',
+                                }}
+                            />
+                        </motion.div>
+                    </a>
+                </Tooltip>
                 <Typography flexGrow={1} align='center' variant='h5'>
                     {projects.name}
                 </Typography>
-                <a href={projects.live} target='_blank' rel="noopener noreferrer">
-                    <motion.div
-                        whileHover={{ rotate: 45, scale: 1.1 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    >
-                        <ArrowOutwardIcon
-                            sx={{
-                                backgroundColor: 'rgba(230, 62, 33, 0.2)',
-                                ml: 'auto',
-                                cursor: 'pointer',
-                                color: '#ca3116',
-                            }}
-                        />
-                    </motion.div>
-                </a>
+
+                <Tooltip title='View Live'>
+                    <a href={projects.live} target='_blank' rel="noopener noreferrer">
+                        <motion.div
+                            whileHover={{ rotate: 45, scale: 1.1 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        >
+                            <ArrowOutwardIcon
+                                sx={{
+                                    backgroundColor: 'rgba(230, 62, 33, 0.2)',
+                                    ml: 'auto',
+                                    cursor: 'pointer',
+                                    color: '#ca3116',
+                                }}
+                            />
+                        </motion.div>
+                    </a>
+                </Tooltip>
             </Box>
         </motion.div>
     );
