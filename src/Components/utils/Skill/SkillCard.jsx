@@ -1,64 +1,73 @@
-import { LinearProgress, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useInView } from 'react-intersection-observer';
 import React, { useEffect, useState } from 'react';
 
 const SkillCard = ({ skill }) => {
-    const { ref, inView } = useInView({
-        threshold: 0.1, 
-    })
-    const [skillLevel, setSkillLevel] = useState(0)
-    useEffect(() => {
-        
-        if (inView) {
-            setSkillLevel(skill.level)
-        } else {
-            setSkillLevel(0)
-        }
-    }, [skill, inView])
-    return (
-        <Box sx={{
-            background: 'linear-gradient(249.05deg, rgba(230, 62, 33, 0.2) 18.59%, rgba(51, 19, 14, 0) 53.25%), #1B1B1B',
-            border: '1px solid #262626',
-            color: 'white',
-            borderRadius: '8px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            transition: 'transform 0.3s',
-            p: 2,
-            width: '100%',
-            '&:hover': {
-                transform: 'scale(1.02)',
-                cursor: 'pointer'
+    const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+    const [level, setLevel] = useState(0);
 
-            },
-        }}>
-            <Box sx={{
+    useEffect(() => {
+        if (inView) {
+            const timer = setTimeout(() => setLevel(skill.level), 150);
+            return () => clearTimeout(timer);
+        }
+    }, [inView, skill.level]);
+
+    return (
+        <Box
+            ref={ref}
+            sx={{
                 display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                mb: 1,
-            }}>
-                <Typography variant='h7' color='white'>
+                flexDirection: 'column',
+                gap: 1,
+                p: 0,
+                width: '100%',
+            }}
+        >
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography
+                    sx={{ color: '#ccc', fontWeight: 600, fontSize: '0.88rem', letterSpacing: 0.3 }}
+                >
                     {skill.name}
                 </Typography>
-                <Typography variant='body2' color='white'>
-                    {`${skill.level}%`}
+                <Typography
+                    sx={{
+                        color: '#E63E21',
+                        fontWeight: 700,
+                        fontSize: '0.8rem',
+                        fontFamily: 'monospace',
+                    }}
+                >
+                    {skill.level}%
                 </Typography>
             </Box>
-            <LinearProgress
-                ref={ref}
-                variant="determinate"
-                value={skillLevel}
+
+            {/* Track */}
+            <Box
                 sx={{
+                    position: 'relative',
                     height: '5px',
-                    backgroundColor: 'rgba(51, 19, 14, 0.5)',
-                    '& .MuiLinearProgress-bar': {
-                        backgroundColor: '#FF4500',
-                    },
+                    borderRadius: '999px',
+                    bgcolor: 'rgba(255,255,255,0.05)',
+                    overflow: 'hidden',
                 }}
-            />
+            >
+                {/* Fill */}
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        height: '100%',
+                        width: `${level}%`,
+                        borderRadius: '999px',
+                        background: 'linear-gradient(90deg, #E63E21, #FF6B35)',
+                        transition: 'width 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                        boxShadow: '0 0 8px rgba(230,62,33,0.5)',
+                    }}
+                />
+            </Box>
         </Box>
     );
 };

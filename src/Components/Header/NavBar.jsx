@@ -5,39 +5,43 @@ import { scrollContext } from '../../ContextAPI/ScrollContext';
 
 const theme = createTheme({
   breakpoints: {
-    values: {
-      mobile: 0,
-      tablet: 640,
-      laptop: 1024,
-      desktop: 1200,
-    },
+    values: { mobile: 0, tablet: 640, laptop: 1024, desktop: 1200 },
   },
 });
 
 const NavBar = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const isXs = useMediaQuery(() => theme.breakpoints.down('tablet'));
-  const { contactUs, aboutMe, projects , activeTab , setActiveTab  } = useContext(scrollContext);
+  const { contactUs, aboutMe, projects, activeTab, setActiveTab } = useContext(scrollContext);
 
   const navItems = [
-    { label: 'ABOUT Me', ref: aboutMe },
+    { label: 'About', ref: aboutMe },
     { label: 'Projects', ref: projects },
-    { label: 'CONTACT', ref: contactUs },
+    { label: 'Contact', ref: contactUs },
   ];
 
   const scrollToView = (ref, index) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
-   setActiveTab(index);
+    setActiveTab(index);
   };
 
-  const toggleNav = () => {
-    isXs && setOpenMenu(!openMenu);
-  };
+  const toggleNav = () => isXs && setOpenMenu(!openMenu);
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: '#161616', zIndex: 50, borderRadius: { sm: '30px' } }}>
+    <AppBar
+      position="sticky"
+      elevation={0}
+      sx={{
+        backgroundColor: 'rgba(8, 8, 8, 0.82)',
+        backdropFilter: 'blur(24px)',
+        WebkitBackdropFilter: 'blur(24px)',
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        zIndex: 50,
+        borderRadius: { sm: '30px' },
+      }}
+    >
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', height: '100%' }}>
-        {/* LOGO */}
+        {/* Logo */}
         <div onClick={toggleNav} style={{ cursor: 'pointer' }}>
           <Logo />
         </div>
@@ -57,27 +61,26 @@ const NavBar = () => {
         </Box>
 
         {/* Mobile Nav */}
-        <Box sx={{
-          position: 'absolute',
-          display: openMenu ? 'block' : 'none',
-          zIndex: 200,
-          inset: 0,
-          backgroundColor: '#161616',
-          top: 4
-        }}>
-          <Tabs
-            sx={{ width: '100%', flexDirection: 'column', gap: 3, textAlign: 'center' }}
-            textColor="inherit"
-            variant="fullWidth"
-          >
+        <Box
+          sx={{
+            position: 'absolute',
+            display: openMenu ? 'block' : 'none',
+            zIndex: 200,
+            inset: 0,
+            backgroundColor: 'rgba(8,8,8,0.96)',
+            backdropFilter: 'blur(24px)',
+            top: 4,
+          }}
+        >
+          <Tabs sx={{ width: '100%' }} textColor="inherit" variant="fullWidth">
             {navItems.map((item, index) => (
               <Tab
                 key={index}
                 label={item.label}
                 sx={navTabStyle}
                 onClick={() => {
-                  setOpenMenu(!openMenu);
-                  scrollToView(item.ref);
+                  setOpenMenu(false);
+                  scrollToView(item.ref, index);
                 }}
               />
             ))}
@@ -89,15 +92,20 @@ const NavBar = () => {
 };
 
 const navTabStyle = {
-  '&:hover': { borderBottom: '4px solid #FFA500', color: '#FFA500' },
-  borderBottom: '4px solid white',
-  marginTop: { xs: 1, sm: 0 }
+  color: '#888',
+  letterSpacing: '0.05em',
+  fontWeight: 500,
+  fontSize: '0.82rem',
+  textTransform: 'uppercase',
+  transition: 'color 0.2s',
+  '&:hover': { color: '#fff' },
 };
 
 const activeTabStyle = {
-  borderBottom: '4px solid #FFA500',
-  color: '#FFA500',
-  marginTop: { xs: 1, sm: 0 }
+  ...navTabStyle,
+  color: '#E63E21',
+  fontWeight: 700,
+  borderBottom: '2px solid #E63E21',
 };
 
 export default NavBar;
