@@ -6,256 +6,292 @@ import { motion } from 'framer-motion';
 import { GitHub } from '@mui/icons-material';
 import StarIcon from '@mui/icons-material/Star';
 
-const ProjectPlaceholder = ({ name, color }) => (
-    <Box
-        sx={{
-            width: '100%',
-            aspectRatio: '16/9',
-            background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)`,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderBottom: `1px solid ${color}33`,
-        }}
-    >
-        <Box
-            sx={{
-                width: 56,
-                height: 56,
-                borderRadius: '50%',
-                border: `2px solid ${color}55`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                mb: 1.5,
-                background: `${color}15`,
-            }}
-        >
-            <GitHub sx={{ color: color, fontSize: 28 }} />
-        </Box>
-        <Typography variant='body2' color={color} fontWeight={700} align='center' px={2}>
-            {name}
-        </Typography>
-        <Typography variant='caption' color='#555' mt={0.5}>
-            Open Source
-        </Typography>
-    </Box>
-);
-
-const ProjectCard = ({ projects }) => {
+const ProjectCard = ({ projects, index }) => {
     const hasImage = !!projects.image;
+    const accent = projects.color || '#E63E21';
 
     return (
         <motion.div
-            initial={{ y: 40, opacity: 0 }}
+            initial={{ y: 48, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            whileHover={{ y: -8, boxShadow: `0 20px 48px rgba(0,0,0,0.6)` }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
+            transition={{ duration: 0.55, ease: 'easeOut', delay: (index % 3) * 0.08 }}
             viewport={{ once: true }}
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                width: '320px',
-                borderRadius: '12px',
-                border: '1px solid #262626',
-                background: 'linear-gradient(180deg, #1c1c1c 0%, #141414 100%)',
-                overflow: 'hidden',
-                position: 'relative',
-                cursor: 'default',
-            }}
         >
-            {/* Featured badge */}
-            {projects.featured && (
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        top: 10,
-                        right: 10,
-                        zIndex: 10,
-                        bgcolor: 'rgba(230, 62, 33, 0.92)',
-                        borderRadius: '20px',
-                        px: 1.2,
-                        py: 0.3,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 0.4,
-                        backdropFilter: 'blur(6px)',
-                    }}
-                >
-                    <StarIcon sx={{ color: 'white', fontSize: '12px' }} />
-                    <Typography variant='caption' color='white' fontWeight={700} fontSize='11px'>
-                        Featured
-                    </Typography>
-                </Box>
-            )}
-
-            {/* Image or placeholder */}
-            <Box sx={{ overflow: 'hidden', borderBottom: '1px solid #222' }}>
-                {hasImage ? (
-                    <motion.div
-                        whileHover={{ scale: 1.06 }}
-                        transition={{ duration: 0.45 }}
-                        style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden' }}
-                    >
-                        <img
+            <Box
+                sx={{
+                    width: { xs: '92vw', sm: '360px' },
+                    maxWidth: '360px',
+                    borderRadius: '14px',
+                    overflow: 'hidden',
+                    border: '1px solid #1e1e1e',
+                    borderTop: `3px solid ${accent}`,
+                    background: 'linear-gradient(160deg, #161616 0%, #111 100%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    cursor: 'default',
+                    transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease',
+                    '&:hover': {
+                        transform: 'translateY(-12px)',
+                        boxShadow: `0 32px 80px rgba(0,0,0,0.7), 0 0 40px ${accent}18`,
+                        borderColor: `${accent}50`,
+                        borderTopColor: accent,
+                    },
+                    '&:hover .card-img': {
+                        transform: 'scale(1.06)',
+                    },
+                }}
+            >
+                {/* Image area */}
+                <Box sx={{ position: 'relative', height: '200px', overflow: 'hidden', bgcolor: '#0d0d0d' }}>
+                    {hasImage ? (
+                        <Box
+                            component='img'
                             src={projects.image}
                             alt={projects.name}
-                            style={{
+                            className='card-img'
+                            sx={{
                                 width: '100%',
                                 height: '100%',
                                 objectFit: 'cover',
+                                objectPosition: 'top center',
                                 display: 'block',
+                                transition: 'transform 0.5s ease',
                             }}
                         />
-                    </motion.div>
-                ) : (
-                    <ProjectPlaceholder name={projects.name} color={projects.color || '#E63E21'} />
-                )}
-            </Box>
-
-            {/* Content area */}
-            <Box
-                sx={{
-                    p: 2.5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    flexGrow: 1,
-                    gap: 1.2,
-                }}
-            >
-                {/* Category label */}
-                <Typography
-                    variant='caption'
-                    sx={{
-                        color: projects.color || '#E63E21',
-                        fontWeight: 700,
-                        letterSpacing: 2,
-                        textTransform: 'uppercase',
-                        fontSize: '10px',
-                    }}
-                >
-                    {projects.category}
-                </Typography>
-
-                {/* Project name */}
-                <Typography variant='h6' fontWeight={800} color='white' lineHeight={1.2}>
-                    {projects.name}
-                </Typography>
-
-                {/* Description */}
-                <Typography
-                    variant='body2'
-                    color='#888'
-                    sx={{
-                        overflow: 'hidden',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: 'vertical',
-                        lineHeight: 1.65,
-                        fontSize: '13px',
-                    }}
-                >
-                    {projects.description}
-                </Typography>
-
-                {/* Tech tags */}
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.7, mt: 0.5 }}>
-                    {projects.tech?.map((t, i) => (
-                        <Chip
-                            key={i}
-                            label={t}
-                            size='small'
+                    ) : (
+                        <Box
                             sx={{
-                                bgcolor: 'rgba(255,255,255,0.04)',
-                                color: '#aaa',
-                                border: '1px solid #2e2e2e',
-                                fontSize: '11px',
-                                height: '20px',
-                                '& .MuiChip-label': { px: 1 },
+                                width: '100%',
+                                height: '100%',
+                                background: `linear-gradient(135deg, ${accent}14 0%, ${accent}05 100%)`,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: 1.5,
                             }}
-                        />
-                    ))}
+                        >
+                            <GitHub sx={{ color: accent, fontSize: 44, opacity: 0.5 }} />
+                            <Typography
+                                variant='body2'
+                                color={accent}
+                                fontWeight={700}
+                                align='center'
+                                px={3}
+                                sx={{ opacity: 0.8 }}
+                            >
+                                {projects.name}
+                            </Typography>
+                        </Box>
+                    )}
+
+                    {/* Index label */}
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            top: 10,
+                            left: 12,
+                            bgcolor: 'rgba(0,0,0,0.72)',
+                            backdropFilter: 'blur(8px)',
+                            borderRadius: '6px',
+                            px: 1,
+                            py: 0.3,
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                color: '#666',
+                                fontFamily: 'monospace',
+                                fontSize: '11px',
+                                fontWeight: 700,
+                            }}
+                        >
+                            {String(index + 1).padStart(2, '0')}
+                        </Typography>
+                    </Box>
+
+                    {/* Featured badge */}
+                    {projects.featured && (
+                        <Box
+                            sx={{
+                                position: 'absolute',
+                                top: 10,
+                                right: 12,
+                                bgcolor: 'rgba(230,62,33,0.9)',
+                                backdropFilter: 'blur(6px)',
+                                borderRadius: '20px',
+                                px: 1.2,
+                                py: 0.3,
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 0.4,
+                            }}
+                        >
+                            <StarIcon sx={{ color: 'white', fontSize: '11px' }} />
+                            <Typography
+                                sx={{ color: 'white', fontWeight: 700, fontSize: '10px', letterSpacing: 0.5 }}
+                            >
+                                Featured
+                            </Typography>
+                        </Box>
+                    )}
+
+                    {/* Bottom gradient fade */}
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            height: '60px',
+                            background: 'linear-gradient(to top, #161616, transparent)',
+                            pointerEvents: 'none',
+                        }}
+                    />
                 </Box>
 
-                {/* Action buttons */}
+                {/* Content */}
                 <Box
                     sx={{
+                        p: 2.5,
                         display: 'flex',
-                        alignItems: 'center',
-                        gap: 1,
-                        mt: 'auto',
-                        pt: 1.5,
-                        borderTop: '1px solid #222',
+                        flexDirection: 'column',
+                        gap: 1.2,
+                        flexGrow: 1,
                     }}
                 >
-                    {projects.github && (
-                        <Tooltip title='View on GitHub'>
-                            <a
-                                href={projects.github}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                style={{ textDecoration: 'none' }}
-                            >
-                                <motion.div whileHover={{ scale: 1.08 }} transition={{ duration: 0.2 }}>
+                    {/* Category */}
+                    <Typography
+                        sx={{
+                            color: accent,
+                            fontWeight: 700,
+                            letterSpacing: 2.5,
+                            textTransform: 'uppercase',
+                            fontSize: '10px',
+                        }}
+                    >
+                        {projects.category}
+                    </Typography>
+
+                    {/* Name */}
+                    <Typography
+                        variant='h6'
+                        fontWeight={800}
+                        color='white'
+                        lineHeight={1.2}
+                        sx={{ fontSize: '1.05rem' }}
+                    >
+                        {projects.name}
+                    </Typography>
+
+                    {/* Description */}
+                    <Typography
+                        sx={{
+                            color: '#666',
+                            fontSize: '13px',
+                            lineHeight: 1.7,
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                        }}
+                    >
+                        {projects.description}
+                    </Typography>
+
+                    {/* Tech chips */}
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.6, mt: 0.3 }}>
+                        {projects.tech?.map((t, i) => (
+                            <Chip
+                                key={i}
+                                label={t}
+                                size='small'
+                                sx={{
+                                    bgcolor: 'rgba(255,255,255,0.04)',
+                                    color: '#666',
+                                    border: '1px solid #1e1e1e',
+                                    fontSize: '10px',
+                                    height: '20px',
+                                    '& .MuiChip-label': { px: 0.9 },
+                                }}
+                            />
+                        ))}
+                    </Box>
+
+                    {/* Divider */}
+                    <Box sx={{ height: '1px', bgcolor: '#1a1a1a', mt: 0.5 }} />
+
+                    {/* Action links */}
+                    <Box sx={{ display: 'flex', gap: 1 }}>
+                        {projects.github && (
+                            <Tooltip title='View Source Code'>
+                                <a
+                                    href={projects.github}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    style={{ textDecoration: 'none' }}
+                                >
                                     <Box
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
                                             gap: 0.6,
-                                            px: 1.5,
-                                            py: 0.7,
+                                            px: 1.4,
+                                            py: 0.65,
                                             borderRadius: '8px',
-                                            bgcolor: 'rgba(255,255,255,0.04)',
-                                            border: '1px solid #2e2e2e',
+                                            bgcolor: 'rgba(255,255,255,0.03)',
+                                            border: '1px solid #222',
                                             cursor: 'pointer',
-                                            transition: 'border-color 0.2s',
-                                            '&:hover': { borderColor: '#555' },
+                                            transition: 'all 0.2s',
+                                            '&:hover': {
+                                                bgcolor: 'rgba(255,255,255,0.07)',
+                                                borderColor: '#444',
+                                            },
                                         }}
                                     >
-                                        <GitHub sx={{ color: '#bbb', fontSize: '15px' }} />
-                                        <Typography variant='caption' color='#bbb' fontWeight={600}>
+                                        <GitHub sx={{ color: '#999', fontSize: '14px' }} />
+                                        <Typography sx={{ color: '#999', fontSize: '12px', fontWeight: 600 }}>
                                             Code
                                         </Typography>
                                     </Box>
-                                </motion.div>
-                            </a>
-                        </Tooltip>
-                    )}
+                                </a>
+                            </Tooltip>
+                        )}
 
-                    {projects.live && (
-                        <Tooltip title='View Live Demo'>
-                            <a
-                                href={projects.live}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                style={{ textDecoration: 'none' }}
-                            >
-                                <motion.div whileHover={{ scale: 1.08 }} transition={{ duration: 0.2 }}>
+                        {projects.live && (
+                            <Tooltip title='View Live Demo'>
+                                <a
+                                    href={projects.live}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    style={{ textDecoration: 'none' }}
+                                >
                                     <Box
                                         sx={{
                                             display: 'flex',
                                             alignItems: 'center',
                                             gap: 0.6,
-                                            px: 1.5,
-                                            py: 0.7,
+                                            px: 1.4,
+                                            py: 0.65,
                                             borderRadius: '8px',
-                                            bgcolor: 'rgba(230, 62, 33, 0.12)',
-                                            border: '1px solid rgba(230, 62, 33, 0.28)',
+                                            bgcolor: `${accent}14`,
+                                            border: `1px solid ${accent}32`,
                                             cursor: 'pointer',
-                                            transition: 'background 0.2s',
-                                            '&:hover': { bgcolor: 'rgba(230, 62, 33, 0.22)' },
+                                            transition: 'all 0.2s',
+                                            '&:hover': { bgcolor: `${accent}22` },
                                         }}
                                     >
-                                        <ArrowOutwardIcon sx={{ color: '#E63E21', fontSize: '15px' }} />
-                                        <Typography variant='caption' color='#E63E21' fontWeight={600}>
-                                            Live
+                                        <ArrowOutwardIcon sx={{ color: accent, fontSize: '14px' }} />
+                                        <Typography
+                                            sx={{ color: accent, fontSize: '12px', fontWeight: 600 }}
+                                        >
+                                            Live Demo
                                         </Typography>
                                     </Box>
-                                </motion.div>
-                            </a>
-                        </Tooltip>
-                    )}
+                                </a>
+                            </Tooltip>
+                        )}
+                    </Box>
                 </Box>
             </Box>
         </motion.div>

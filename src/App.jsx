@@ -9,7 +9,7 @@ import ContactUs from './Components/Sections/ContactUs.jsx'
 
 const App = () => {
   return (
-    <Box sx={{ p: { xs: 0, sm: 3 }, m: 0, backgroundColor: 'black' }}>
+    <Box sx={{ p: { xs: 0, sm: 3 }, m: 0, backgroundColor: '#050505' }}>
       <NavBar />
       <Main />
       <SkillSection />

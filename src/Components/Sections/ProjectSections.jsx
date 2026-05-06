@@ -121,7 +121,7 @@ const ProjectSection = () => {
                                 exit={{ opacity: 0, scale: 0.88 }}
                                 transition={{ duration: 0.28 }}
                             >
-                                <ProjectCard projects={project} />
+                                <ProjectCard projects={project} index={projectInfo.indexOf(project)} />
                             </motion.div>
                         ))}
                     </AnimatePresence>

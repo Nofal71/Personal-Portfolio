@@ -1,7 +1,7 @@
-import { Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const ROLES = ['Frontend Developer', 'React Engineer', 'UI Specialist', 'Web Builder'];
 
@@ -29,12 +29,7 @@ const AnimatedCounter = ({ target, suffix }) => {
         return () => clearInterval(timer);
     }, [target]);
 
-    return (
-        <span>
-            {count}
-            {suffix}
-        </span>
-    );
+    return <span>{count}{suffix}</span>;
 };
 
 const Hero = () => {
@@ -48,77 +43,112 @@ const Hero = () => {
     }, []);
 
     return (
-        <>
-            {/* Animated role label */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            {/* Animated role badge */}
             <motion.div
                 key={roleIndex}
-                initial={{ opacity: 0, y: -8 }}
+                initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45 }}
+                transition={{ duration: 0.4 }}
             >
-                <Typography
-                    variant='subtitle1'
+                <Box
                     sx={{
-                        my: { xs: 0, md: 2 },
-                        background: 'linear-gradient(135deg, #E63E21, #FF6B35)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        fontWeight: 700,
-                        letterSpacing: 3,
-                        textTransform: 'uppercase',
-                        fontSize: { xs: '0.75rem', sm: '0.85rem' },
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 1,
+                        px: 1.5,
+                        py: 0.5,
+                        borderRadius: '20px',
+                        border: '1px solid rgba(230,62,33,0.3)',
+                        background: 'rgba(230,62,33,0.08)',
+                        width: 'fit-content',
                     }}
                 >
-                    {ROLES[roleIndex]}
-                </Typography>
+                    <Box
+                        sx={{
+                            width: 6,
+                            height: 6,
+                            borderRadius: '50%',
+                            bgcolor: '#E63E21',
+                            boxShadow: '0 0 8px #E63E21',
+                            animation: 'dotPulse 2s ease-in-out infinite',
+                            '@keyframes dotPulse': {
+                                '0%, 100%': { opacity: 1 },
+                                '50%': { opacity: 0.4 },
+                            },
+                        }}
+                    />
+                    <Typography
+                        variant='caption'
+                        sx={{
+                            color: '#E63E21',
+                            fontWeight: 700,
+                            letterSpacing: 1.5,
+                            textTransform: 'uppercase',
+                            fontSize: '10px',
+                        }}
+                    >
+                        {ROLES[roleIndex]}
+                    </Typography>
+                </Box>
             </motion.div>
 
             {/* Name */}
-            <Box sx={{ my: { xs: 1, md: 2 }, pr: { lg: 4 } }}>
+            <Box>
                 <Typography
-                    variant='h2'
+                    variant='h1'
                     fontWeight={900}
                     color='white'
                     sx={{
-                        fontSize: { xs: '2.2rem', sm: '3rem', md: '3.8rem' },
-                        lineHeight: 1.08,
+                        fontSize: { xs: '2.6rem', sm: '3.4rem', md: '4.2rem' },
+                        lineHeight: 1.05,
+                        letterSpacing: '-0.02em',
                     }}
                 >
                     I'm Nofal
                 </Typography>
                 <Typography
-                    variant='h2'
+                    variant='h1'
                     fontWeight={900}
                     sx={{
-                        fontSize: { xs: '2.2rem', sm: '3rem', md: '3.8rem' },
-                        lineHeight: 1.08,
+                        fontSize: { xs: '2.6rem', sm: '3.4rem', md: '4.2rem' },
+                        lineHeight: 1.05,
+                        letterSpacing: '-0.02em',
                         background: 'linear-gradient(135deg, #E63E21 20%, #FF6B35 80%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
                     }}
                 >
                     Hassaan
                 </Typography>
-
-                <Typography
-                    color='#777'
-                    sx={{ mt: 2, maxWidth: 380, lineHeight: 1.8, fontSize: { xs: '0.9rem', sm: '1rem' } }}
-                >
-                    Building fast, beautiful web experiences with React and modern tooling.
-                </Typography>
             </Box>
 
+            {/* Bio */}
+            <Typography
+                color='#666'
+                sx={{
+                    maxWidth: 360,
+                    lineHeight: 1.8,
+                    fontSize: { xs: '0.9rem', sm: '0.95rem' },
+                }}
+            >
+                Building fast, beautiful web experiences with React and modern tooling.
+                Open to full-time and freelance opportunities.
+            </Typography>
+
             {/* Stats strip */}
-            <Box sx={{ display: 'flex', gap: { xs: 3, sm: 4 }, mt: 1, flexWrap: 'wrap' }}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    gap: { xs: 3, sm: 4 },
+                    pt: 1,
+                    mt: 0.5,
+                    borderTop: '1px solid #1a1a1a',
+                }}
+            >
                 {STATS.map((stat, i) => (
-                    <Box
-                        key={i}
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'flex-start',
-                        }}
-                    >
+                    <Box key={i}>
                         <Typography
                             variant='h5'
                             fontWeight={900}
@@ -126,14 +156,16 @@ const Hero = () => {
                                 background: 'linear-gradient(135deg, #E63E21, #FF6B35)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text',
                                 lineHeight: 1.1,
+                                fontSize: { xs: '1.3rem', sm: '1.6rem' },
                             }}
                         >
                             <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                         </Typography>
                         <Typography
                             variant='caption'
-                            color='#555'
+                            color='#444'
                             sx={{ letterSpacing: 1.5, textTransform: 'uppercase', fontSize: '9px' }}
                         >
                             {stat.label}
@@ -141,7 +173,7 @@ const Hero = () => {
                     </Box>
                 ))}
             </Box>
-        </>
+        </Box>
     );
 };
 
